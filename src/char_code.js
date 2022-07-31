@@ -2,7 +2,7 @@
 // Uses `string.charCodeAt()` over `String.codePointAt()` because it is faster.
 /* eslint-disable complexity, max-statements, fp/no-let, fp/no-loops, max-depth,
    fp/no-mutation, no-magic-numbers, unicorn/prefer-code-point */
-export const getCodePointByteLength = function (string) {
+export const getCharCodeByteLength = function (string) {
   const charLength = string.length
   let byteLength = charLength
   let hasSurrogate = false

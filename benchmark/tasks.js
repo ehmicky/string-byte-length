@@ -14,7 +14,7 @@ const beforeAll = function ({ character, size }) {
 // eslint-disable-next-line fp/no-let
 let string = ''
 
-export const stringByteLength = {
+export const codepoint = {
   beforeAll,
   main() {
     getCodePointByteLength(string)

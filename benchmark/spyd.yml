@@ -21,7 +21,7 @@ inputs:
   #   1e7c: 1e7
   #   1e8c: 1e8
 titles:
-  stringByteLength: string-byte-length
+  codepoint: String.codePointAt()
   bufferByteLength: Buffer.byteLength()
   bufferFrom: Buffer.from().length
   blob: new Blob().size

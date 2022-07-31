@@ -48,7 +48,6 @@ This library uses a mix of multiple algorithms:
 [`string.length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length)
 retrieves the number of characters (or
 ["code units"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length#description)).
-
 This is different from computing the number of bytes when the string is
 serialized (for example in a file or network request) since UTF-8 characters can
 be 1 to 4 bytes long.
@@ -63,7 +62,7 @@ However, it only works with Node.js.
 ## Buffer.from()
 
 [`Buffer.from(string).length`](https://nodejs.org/api/buffer.html#static-method-bufferfromstring-encoding)
-is similar to [`Buffer.byteLength`](#bufferbytelength) but
+has similar pros/cons as [`Buffer.byteLength`](#bufferbytelength) but is
 [slower](#benchmarks).
 
 ## TextEncoder
@@ -72,14 +71,14 @@ is similar to [`Buffer.byteLength`](#bufferbytelength) but
 is fast as it relies on lower-level code. However, it is slower on small
 strings.
 
-Also, while it is widely supported,
-[a few platforms](https://caniuse.com/textencoder) (like Opera mini) might still
-miss it.
+Also, while widely supported, [a few platforms](https://caniuse.com/textencoder)
+(like Opera mini) might still miss it.
 
 ## Blob
 
 [`new Blob([string]).size`](https://developer.mozilla.org/en-US/docs/Web/API/Blob/size)
-is similar to [`TextEncoder`](#textencoder) but [slower](#benchmarks).
+has similar pros/cons as [`TextEncoder`](#textencoder) but is
+[slower](#benchmarks).
 
 ## String.charCodeAt()
 
@@ -93,7 +92,8 @@ than other methods on big strings.
 ## String.codePointAt()
 
 [`String.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)
-is like [`String.charCodeAt()`](#stringcharcodeat) but [slower](#benchmarks).
+has similar props/cons as [`String.charCodeAt()`](#stringcharcodeat) but is
+[slower](#benchmarks).
 
 ## encodeURI()
 

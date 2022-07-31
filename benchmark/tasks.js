@@ -1,8 +1,8 @@
 import { Buffer, Blob } from 'buffer'
 
 import { getNodeByteLength } from '../src/buffer.js'
+import { getCodePointByteLength } from '../src/codepoint.js'
 import { createTextEncoderFunc } from '../src/encoder.js'
-import { getCodePointByteLength } from '../src/string.js'
 
 import { getString } from './string.js'
 

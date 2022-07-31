@@ -6,15 +6,50 @@
 
 Get the UTF-8 byte length of a string.
 
-Work in progress!
-
-# Features
-
 # Example
 
 ```js
 import stringByteLength from 'string-byte-length'
+
+stringByteLength('test') // 4
+stringByteLength(' ') // 1
+stringByteLength('\0') // 1
+stringByteLength('±') // 2
+stringByteLength('★') // 3
+stringByteLength('🦄') // 4
 ```
+
+# Difference with alternatives
+
+## Blob, TextEncoder, encodeURI()
+
+The same can be achieved with:
+
+- [`new Blob([string]).size`](https://developer.mozilla.org/en-US/docs/Web/API/Blob/size)
+- [`new TextEncoder().encode(string)`](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encode)
+- [`encodeURI(string)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI)
+  or
+  [`encodeURIComponent(string)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
+  by counting `%` sequences separately
+- [`Buffer.from(string)`.length](https://nodejs.org/api/buffer.html#static-method-bufferfromstring-encoding)
+
+However, those are much slower. Also, while `Blob()` and `TextEncoder()` are
+widely supported, [a few platforms](https://caniuse.com/textencoder) (like Opera
+mini) might still miss them.
+
+## Buffer.byteLength
+
+[`Buffer.byteLength(string)`](https://nodejs.org/api/buffer.html#static-method-bufferbytelengthstring-encoding)
+only works in Node.js. This library on the hand simply iterates over the string
+using
+[`String.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt),
+which is
+[standard JavaScript](https://caniuse.com/mdn-javascript_builtins_string_codepointat).
+
+`Buffer.byteLength()` uses
+[V8's C++ implementation](https://v8.github.io/api/head/classv8_1_1String.html#af99433ee51ed45337e5b4536bd28a834)
+which is much faster. Therefore, this library simply forwards to
+`Buffer.byteLength()` when run in Node.js.
 
 # Install
 
@@ -25,24 +60,6 @@ npm install string-byte-length
 This package is an ES module and must be loaded using
 [an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
 not `require()`.
-
-# API
-
-## stringByteLength(value, options?)
-
-`value` `any`\
-`options` [`Options?`](#options)\
-_Return value_: [`object`](#return-value)
-
-### Options
-
-Object with the following properties.
-
-### Return value
-
-Object with the following properties.
-
-# Related projects
 
 # Support
 

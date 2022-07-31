@@ -1,9 +1,3 @@
-// This is:
-//  - Available on any platform unlike:
-//     - `new Blob([string]).size`
-//     - `new TextEncoder().encode(string).length`
-//  - Faster than any of the above, and also than any methods relying on
-//    `encodeURI()` or `encodeURIComponent()`
 // Uses imperative code for performance.
 /* eslint-disable complexity, max-statements, fp/no-let, fp/no-loops, max-depth,
    fp/no-mutation, no-magic-numbers */

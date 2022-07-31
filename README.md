@@ -49,8 +49,8 @@ This library uses a mix of multiple algorithms:
 retrieves the number of characters (or
 ["code units"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length#description)).
 
-This library computes the number of bytes when the string is serialized to
-UTF-8, for example in a file or network request. This is different since UTF-8
+This is different from computes the number of bytes when the string is
+serialized to UTF-8, for example in a file or network request, since UTF-8
 characters can be 1 to 4 bytes long.
 
 ## Buffer.byteLength()

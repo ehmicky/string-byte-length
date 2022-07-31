@@ -5,26 +5,32 @@
 export const getCharCodeByteLength = function (string) {
   const charLength = string.length
   let byteLength = charLength
-  let hasSurrogate = false
 
   for (let charIndex = 0; charIndex < charLength; charIndex += 1) {
     const codepoint = string.charCodeAt(charIndex)
 
-    if (codepoint <= LAST_ASCII_CODEPOINT) {
-      hasSurrogate = false
-    } else if (codepoint <= LAST_TWO_BYTES_CODEPOINT) {
-      byteLength += 1
-      hasSurrogate = false
-    } else if (
-      hasSurrogate &&
-      codepoint >= FIRST_HIGH_SURROGATE &&
-      codepoint <= LAST_HIGH_SURROGATE
-    ) {
-      hasSurrogate = false
-    } else {
-      byteLength += 2
-      hasSurrogate =
-        codepoint >= FIRST_LOW_SURROGATE && codepoint <= LAST_LOW_SURROGATE
+    if (codepoint > LAST_ASCII_CODEPOINT) {
+      if (codepoint <= LAST_TWO_BYTES_CODEPOINT) {
+        byteLength += 1
+      } else {
+        byteLength += 2
+
+        if (
+          codepoint >= FIRST_LOW_SURROGATE &&
+          codepoint <= LAST_LOW_SURROGATE
+        ) {
+          // When out-of-bound, this returns NaN, which is `false` with the
+          // next condition
+          const nextCodepoint = string.charCodeAt(charIndex + 1)
+
+          if (
+            nextCodepoint >= FIRST_HIGH_SURROGATE &&
+            nextCodepoint <= LAST_HIGH_SURROGATE
+          ) {
+            charIndex += 1
+          }
+        }
+      }
     }
   }
 

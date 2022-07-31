@@ -81,16 +81,20 @@ miss it.
 [`new Blob([string]).size`](https://developer.mozilla.org/en-US/docs/Web/API/Blob/size)
 is similar to [`TextEncoder`](#textencoder) but [slower](#benchmarks).
 
-## String.codePointAt()
+## String.charCodeAt()
 
-[`String.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)
-or
 [`String.charCodeAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt)
 can be used on each character to compute its UTF-8 byte length based on the
 resulting codepoint.
 
 This works on all platforms and is fast on small strings. However, it is slower
 than other methods on big strings.
+
+## String.codePointAt()
+
+[`String.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)
+is like [`String.charCodeAt()`](#stringcharcodeat) but slightly
+[slower](#benchmarks).
 
 ## encodeURI()
 

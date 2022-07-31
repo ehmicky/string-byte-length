@@ -1,4 +1,17 @@
-import { getStringByteLength } from './length.js'
+import { getTextEncoderByteLength, TEXT_ENCODER_MIN_LENGTH } from './encoder.js'
+import { getStringByteLength } from './string.js'
+
+const getMainFunction = function () {
+  if ('Buffer' in globalThis) {
+    return getNodeByteLength
+  }
+
+  if ('TextEncoder' in globalThis) {
+    return getByteLength.bind(undefined, new TextEncoder())
+  }
+
+  return getStringByteLength
+}
 
 // This is the fastest method. However, it is only available in Node.js.
 const getNodeByteLength = function (string) {
@@ -7,5 +20,10 @@ const getNodeByteLength = function (string) {
   return globalThis.Buffer.byteLength(string)
 }
 
-/* c8 ignore next */
-export default 'Buffer' in globalThis ? getNodeByteLength : getStringByteLength
+const getByteLength = function (textEncoder, string) {
+  return string.length < TEXT_ENCODER_MIN_LENGTH
+    ? getStringByteLength
+    : getTextEncoderByteLength(textEncoder)
+}
+
+export default getMainFunction()

@@ -5,7 +5,9 @@ import stringByteLength from 'string-byte-length'
 import { each } from 'test-each'
 
 // eslint-disable-next-line no-restricted-imports
-import { getStringByteLength } from '../src/length.js'
+import { getTextEncoderByteLength } from '../src/encoder.js'
+// eslint-disable-next-line no-restricted-imports
+import { getStringByteLength } from '../src/string.js'
 
 const CHARACTERS = [
   // ASCII (1 byte)
@@ -48,7 +50,11 @@ const INPUTS = ['', ...STRINGS].map((string) => ({
 }))
 each(
   INPUTS,
-  [stringByteLength, getStringByteLength],
+  [
+    stringByteLength,
+    getStringByteLength,
+    getTextEncoderByteLength.bind(undefined, new TextEncoder()),
+  ],
   ({ title }, { string }, getByteLength) => {
     test(`Should compute same length as Buffer.byteLength() | ${title}`, (t) => {
       t.is(Buffer.byteLength(string), getByteLength(string))

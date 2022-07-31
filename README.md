@@ -24,9 +24,12 @@ stringByteLength('🦄') // 4
 ## String.length
 
 [`string.length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length)
-retrieves the number of characters. This library computes the number of bytes
-when the string is serialized to UTF-8, for example in a file or network
-request. Those are different since UTF-8 characters can be 1 to 4 bytes long.
+retrieves the number of characters (or
+["code units"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length#description)).
+
+This library computes the number of bytes when the string is serialized to
+UTF-8, for example in a file or network request. Those are different since UTF-8
+characters can be 1 to 4 bytes long.
 
 ## Blob, TextEncoder, encodeURI()
 

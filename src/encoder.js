@@ -1,4 +1,8 @@
-export const getTextEncoderByteLength = function (textEncoder, string) {
+export const createTextEncoderFunc = function () {
+  return getTextEncoderByteLength.bind(undefined, new TextEncoder())
+}
+
+const getTextEncoderByteLength = function (textEncoder, string) {
   return textEncoder.encode(string).length
 }
 

@@ -1,4 +1,4 @@
-import { getTextEncoderByteLength, TEXT_ENCODER_MIN_LENGTH } from './encoder.js'
+import { createTextEncoderFunc, TEXT_ENCODER_MIN_LENGTH } from './encoder.js'
 import { getStringByteLength } from './string.js'
 
 const getMainFunction = function () {
@@ -7,7 +7,7 @@ const getMainFunction = function () {
   }
 
   if ('TextEncoder' in globalThis) {
-    return getByteLength.bind(undefined, new TextEncoder())
+    return getByteLength.bind(undefined, createTextEncoderFunc())
   }
 
   return getStringByteLength
@@ -20,10 +20,10 @@ const getNodeByteLength = function (string) {
   return globalThis.Buffer.byteLength(string)
 }
 
-const getByteLength = function (textEncoder, string) {
+const getByteLength = function (getTextEncoderByteLength, string) {
   return string.length < TEXT_ENCODER_MIN_LENGTH
-    ? getStringByteLength
-    : getTextEncoderByteLength(textEncoder)
+    ? getStringByteLength(string)
+    : getTextEncoderByteLength(string)
 }
 
 export default getMainFunction()

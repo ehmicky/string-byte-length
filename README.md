@@ -6,6 +6,11 @@
 
 Get the UTF-8 byte length of a string.
 
+# Features
+
+- [Fastest](#benchmarks) available library in JavaScript.
+- Works on all platforms (Node.js, browsers, Deno, etc.)
+
 # Example
 
 ```js
@@ -19,7 +24,13 @@ stringByteLength('★') // 3
 stringByteLength('🦄') // 4
 ```
 
-# Difference with alternatives
+# Alternatives
+
+This library uses a mix of multiple algorithms:
+
+- In Node.js: [`Buffer.byteLength()`](#bufferbytelength)
+- Otherwise, on big strings: [`TextEncoder`](#textencoder)
+- Otherwise: [`String.codePointAt()`](#stringcodepointat)
 
 ## String.length
 
@@ -31,35 +42,51 @@ This library computes the number of bytes when the string is serialized to
 UTF-8, for example in a file or network request. Those are different since UTF-8
 characters can be 1 to 4 bytes long.
 
-## Blob, TextEncoder, encodeURI()
-
-The same can be achieved with:
-
-- [`new Blob([string]).size`](https://developer.mozilla.org/en-US/docs/Web/API/Blob/size)
-- [`new TextEncoder().encode(string)`](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encode)
-- [`encodeURI(string)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI)
-  or
-  [`encodeURIComponent(string)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
-  by counting `%` sequences separately
-- [`Buffer.from(string)`.length](https://nodejs.org/api/buffer.html#static-method-bufferfromstring-encoding)
-
-However, those are much slower. Also, while `Blob()` and `TextEncoder()` are
-widely supported, [a few platforms](https://caniuse.com/textencoder) (like Opera
-mini) might still miss them.
-
-## Buffer.byteLength
+## Buffer.byteLength()
 
 [`Buffer.byteLength(string)`](https://nodejs.org/api/buffer.html#static-method-bufferbytelengthstring-encoding)
-only works in Node.js. This library on the hand simply iterates over the string
-using
-[`String.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt),
-which is
-[standard JavaScript](https://caniuse.com/mdn-javascript_builtins_string_codepointat).
+is [very fast](#benchmarks) since it uses
+[V8's C++ implementation](https://v8.github.io/api/head/classv8_1_1String.html#af99433ee51ed45337e5b4536bd28a834).
+However, it only works with Node.js.
 
-`Buffer.byteLength()` uses
-[V8's C++ implementation](https://v8.github.io/api/head/classv8_1_1String.html#af99433ee51ed45337e5b4536bd28a834)
-which is much faster. Therefore, this library simply forwards to
-`Buffer.byteLength()` when run in Node.js.
+## Buffer.from()
+
+[`Buffer.from(string)`.length](https://nodejs.org/api/buffer.html#static-method-bufferfromstring-encoding)
+is similar to [`Buffer.byteLength`](#bufferbytelength) but
+[slower](#benchmarks).
+
+## TextEncoder
+
+[`new TextEncoder().encode(string)`](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encode)
+is fast as it relies on lower-level code. However, it is slower on small
+strings.
+
+Also, while it is widely supported,
+[a few platforms](https://caniuse.com/textencoder) (like Opera mini) might still
+miss it.
+
+## Blob
+
+[`new Blob([string]).size`](https://developer.mozilla.org/en-US/docs/Web/API/Blob/size)
+is similar to [`TextEncoder`](#textencoder) but [slower](#benchmarks).
+
+## String.codePointAt()
+
+[`String.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)
+can be used on each character. The UTF-8 byte length can be guessed from the
+resulting codepoint.
+
+This works on all platforms and is fast on small strings. However, it is slower
+than other methods on big strings.
+
+## encodeURI()
+
+[`encodeURI(string)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI)
+or
+[`encodeURIComponent(string)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
+can be used by counting `%` sequences separately, such as
+`encodeURI(string).split(/%..|./u).length - 1`. However, this method is
+[very slow](#benchmarks).
 
 # Install
 
@@ -70,6 +97,8 @@ npm install string-byte-length
 This package is an ES module and must be loaded using
 [an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
 not `require()`.
+
+# Benchmarks
 
 # Support
 

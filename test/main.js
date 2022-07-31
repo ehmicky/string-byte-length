@@ -1,5 +1,3 @@
-import { Buffer } from 'buffer'
-
 import test from 'ava'
 import stringByteLength from 'string-byte-length'
 import { each } from 'test-each'
@@ -10,50 +8,52 @@ import { createTextEncoderFunc } from '../src/encoder.js'
 import { getStringByteLength } from '../src/string.js'
 
 const CHARACTERS = [
-  // ASCII (1 byte)
-  '\0',
-  '\u0001',
-  '\b',
-  '\t',
-  '\n',
-  'a',
-  ' ',
-  '\u007F',
-  // Non-ASCII nor astral before U+0800 (2 bytes)
-  '\u0080',
-  '\u07FF',
-  // Non-ASCII nor astral since U+0800 (3 bytes)
-  '\u0800',
-  '\uFFFF',
-  // Astral characters (4 bytes)
-  '\uD800\uDC00',
-  '\uDBFF\uDFFF',
-  '\u{10000}',
-  '\u{1FFFF}',
-  '\u{FFFFF}',
-  // Invalid surrogate pairs (3 bytes)
-  '\uD800',
-  '\uDBFF',
-  '\uDC00',
-  '\uDFFF',
-  '\uDC00\uD800',
+  // ASCII
+  { string: '\0', size: 1 },
+  { string: '\u0001', size: 1 },
+  { string: '\b', size: 1 },
+  { string: '\t', size: 1 },
+  { string: '\n', size: 1 },
+  { string: 'a', size: 1 },
+  { string: ' ', size: 1 },
+  { string: '\u007F', size: 1 },
+  // Non-ASCII nor astral before U+0800
+  { string: '\u0080', size: 2 },
+  { string: '\u07FF', size: 2 },
+  // Non-ASCII nor astral since U+0800
+  { string: '\u0800', size: 3 },
+  { string: '\uFFFF', size: 3 },
+  // Astral characters
+  { string: '\uD800\uDC00', size: 4 },
+  { string: '\uDBFF\uDFFF', size: 4 },
+  { string: '\u{10000}', size: 4 },
+  { string: '\u{1FFFF}', size: 4 },
+  { string: '\u{FFFFF}', size: 4 },
+  // Invalid surrogate pairs
+  { string: '\uD800', size: 3 },
+  { string: '\uDBFF', size: 3 },
+  { string: '\uDC00', size: 3 },
+  { string: '\uDFFF', size: 3 },
+  { string: '\uDC00\uD800', size: 6 },
 ]
-const STRINGS = CHARACTERS.flatMap((string) => [
-  string,
-  `${string} `,
-  ` ${string}`,
+const STRINGS = CHARACTERS.flatMap(({ string, size }) => [
+  { string, size },
+  { string: `${string} `, size: size + 1 },
+  { string: ` ${string}`, size: size + 1 },
 ])
-const INPUTS = ['', ...STRINGS].map((string) => ({
+const ALL_STRINGS = [{ string: '', size: 0 }, ...STRINGS]
+const INPUTS = ALL_STRINGS.map(({ string, size }) => ({
   string,
+  size,
   // eslint-disable-next-line no-magic-numbers
   title: JSON.stringify(string.toString(16)),
 }))
 each(
   INPUTS,
   [stringByteLength, getStringByteLength, createTextEncoderFunc()],
-  ({ title }, { string }, getByteLength) => {
-    test(`Should compute same length as Buffer.byteLength() | ${title}`, (t) => {
-      t.is(Buffer.byteLength(string), getByteLength(string))
+  ({ title }, { string, size }, getByteLength) => {
+    test(`Should compute the byte length | ${title}`, (t) => {
+      t.is(getByteLength(string), size)
     })
   },
 )

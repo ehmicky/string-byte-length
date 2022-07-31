@@ -31,4 +31,4 @@ export const CACHE_MAX_MEMORY = 1e5
 let cachedEncoderBuffer
 
 // `TextEncoder()` is faster once the string is large enough
-export const TEXT_ENCODER_MIN_LENGTH = 3e2
+export const TEXT_ENCODER_MIN_LENGTH = 1e2

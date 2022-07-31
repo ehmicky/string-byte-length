@@ -1,6 +1,6 @@
 import { getNodeByteLength } from './buffer.js'
+import { getCodePointByteLength } from './codepoint.js'
 import { createTextEncoderFunc, TEXT_ENCODER_MIN_LENGTH } from './encoder.js'
-import { getCodePointByteLength } from './string.js'
 
 // Retrieve the best method based on the platform support
 const getMainFunction = function () {

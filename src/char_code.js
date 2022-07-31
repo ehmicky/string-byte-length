@@ -18,7 +18,7 @@ export const getCharCodeByteLength = function (string) {
       byteLength += 1
       hasSurrogate = false
       // Astral character
-    } else if (hasSurrogate && codepoint >= 0xdc_00 && codepoint <= 0xdf_ff) {
+    } else if (hasSurrogate && codepoint >= 0xdc_00 && codepoint < 0xe0_00) {
       hasSurrogate = false
       // U+0800 to U+ffff -> 3 bytes
       // However, U+d800 to U+dbff:
@@ -26,7 +26,7 @@ export const getCharCodeByteLength = function (string) {
       //  - Otherwise -> 3 bytes (like above)
     } else {
       byteLength += 2
-      hasSurrogate = codepoint >= 0xd8_00 && codepoint <= 0xdb_ff
+      hasSurrogate = codepoint >= 0xd8_00 && codepoint < 0xdc_00
     }
   }
 

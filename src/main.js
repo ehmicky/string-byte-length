@@ -2,7 +2,8 @@ import { createTextEncoderFunc, TEXT_ENCODER_MIN_LENGTH } from './encoder.js'
 import { getStringByteLength } from './string.js'
 
 const getMainFunction = function () {
-  if ('Buffer' in globalThis) {
+  // eslint-disable-next-line n/prefer-global/buffer
+  if ('Buffer' in globalThis && 'byteLength' in globalThis.Buffer) {
     return getNodeByteLength
   }
 

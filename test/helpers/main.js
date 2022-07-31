@@ -10,7 +10,7 @@ const INPUTS = ALL_STRINGS.map(({ string, size }) => ({
   string,
   size,
   // eslint-disable-next-line no-magic-numbers
-  title: JSON.stringify(string.toString(16)),
+  title: JSON.stringify(string.replace(/_+/u, '_').toString(16)),
 }))
 
 each(INPUTS, ({ title }, { string, size }) => {

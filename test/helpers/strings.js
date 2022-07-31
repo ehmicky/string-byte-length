@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-restricted-imports
+import { TEXT_ENCODER_MIN_LENGTH } from '../../src/encoder.js'
+
 // All characters being tested
 const CHARACTERS = [
   // ASCII
@@ -30,10 +33,13 @@ const CHARACTERS = [
 ]
 
 // Try each character with prepended|appended characters
+const LONG_SPACE = '_'.repeat(TEXT_ENCODER_MIN_LENGTH)
 const STRINGS = CHARACTERS.flatMap(({ string, size }) => [
   { string, size },
   { string: `${string} `, size: size + 1 },
   { string: ` ${string}`, size: size + 1 },
+  { string: `${string}${LONG_SPACE}`, size: size + TEXT_ENCODER_MIN_LENGTH },
+  { string: `${LONG_SPACE}${string}`, size: size + TEXT_ENCODER_MIN_LENGTH },
 ])
 
 // Also test empty strings

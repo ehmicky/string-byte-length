@@ -2,7 +2,7 @@ import { Buffer, Blob } from 'buffer'
 
 import { getNodeByteLength } from '../src/buffer.js'
 import { createTextEncoderFunc } from '../src/encoder.js'
-import { getStringByteLength } from '../src/string.js'
+import { getCodePointByteLength } from '../src/string.js'
 
 import { getString } from './string.js'
 
@@ -17,7 +17,7 @@ let string = ''
 export const stringByteLength = {
   beforeAll,
   main() {
-    getStringByteLength(string)
+    getCodePointByteLength(string)
   },
 }
 

@@ -1,7 +1,7 @@
 // Uses imperative code for performance.
 /* eslint-disable complexity, max-statements, fp/no-let, fp/no-loops, max-depth,
    fp/no-mutation, no-magic-numbers */
-export const getStringByteLength = function (string) {
+export const getCodePointByteLength = function (string) {
   const charLength = string.length
   let byteLength = 0
 

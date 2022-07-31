@@ -9,7 +9,7 @@ Get the UTF-8 byte length of a string.
 # Features
 
 - [Fastest](#benchmarks) available library in JavaScript.
-- Works on all platforms (Node.js, browsers, Deno, etc.)
+- Works on [all platforms](#alternatives) (Node.js, browsers, Deno, etc.)
 
 # Example
 
@@ -24,13 +24,24 @@ stringByteLength('★') // 3
 stringByteLength('🦄') // 4
 ```
 
+# Install
+
+```bash
+npm install string-byte-length
+```
+
+This package is an ES module and must be loaded using
+[an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
+not `require()`.
+
 # Alternatives
 
 This library uses a mix of multiple algorithms:
 
 - In Node.js: [`Buffer.byteLength()`](#bufferbytelength)
-- Otherwise, on big strings: [`TextEncoder`](#textencoder)
-- Otherwise: [`String.codePointAt()`](#stringcodepointat)
+- Otherwise:
+  - On big strings: [`TextEncoder`](#textencoder)
+  - On small strings: [`String.codePointAt()`](#stringcodepointat)
 
 ## String.length
 
@@ -39,7 +50,7 @@ retrieves the number of characters (or
 ["code units"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length#description)).
 
 This library computes the number of bytes when the string is serialized to
-UTF-8, for example in a file or network request. Those are different since UTF-8
+UTF-8, for example in a file or network request. This is different since UTF-8
 characters can be 1 to 4 bytes long.
 
 ## Buffer.byteLength()
@@ -51,7 +62,7 @@ However, it only works with Node.js.
 
 ## Buffer.from()
 
-[`Buffer.from(string)`.length](https://nodejs.org/api/buffer.html#static-method-bufferfromstring-encoding)
+[`Buffer.from(string).length`](https://nodejs.org/api/buffer.html#static-method-bufferfromstring-encoding)
 is similar to [`Buffer.byteLength`](#bufferbytelength) but
 [slower](#benchmarks).
 
@@ -73,7 +84,7 @@ is similar to [`TextEncoder`](#textencoder) but [slower](#benchmarks).
 ## String.codePointAt()
 
 [`String.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)
-can be used on each character. The UTF-8 byte length can be guessed from the
+can be used on each character to compute its UTF-8 byte length based on the
 resulting codepoint.
 
 This works on all platforms and is fast on small strings. However, it is slower
@@ -87,16 +98,6 @@ or
 can be used by counting `%` sequences separately, such as
 `encodeURI(string).split(/%..|./u).length - 1`. However, this method is
 [very slow](#benchmarks).
-
-# Install
-
-```bash
-npm install string-byte-length
-```
-
-This package is an ES module and must be loaded using
-[an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
-not `require()`.
 
 # Benchmarks
 

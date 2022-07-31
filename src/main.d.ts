@@ -1,12 +1,9 @@
 /**
- * `string-byte-length` options
- */
-export interface Options {}
-
-/**
  *
  * @example
  * ```js
  * ```
  */
-export default function stringByteLength(value: any, options?: Options): object
+export default function stringByteLength<T extends string>(
+  string: T,
+): T extends '' ? 0 : number

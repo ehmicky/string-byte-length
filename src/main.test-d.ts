@@ -1,8 +1,8 @@
-import { expectType, expectAssignable } from 'tsd'
+import { expectType, expectNotType, expectError } from 'tsd'
 
-import stringByteLength, { Options } from './main.js'
+import stringByteLength from './main.js'
 
-expectType<object>(stringByteLength(true))
-
-stringByteLength(true, {})
-expectAssignable<Options>({})
+expectType<0>(stringByteLength(''))
+expectNotType<0>(stringByteLength('a'))
+expectType<number>(stringByteLength('a'))
+expectError(stringByteLength(true))

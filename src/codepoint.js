@@ -1,4 +1,5 @@
 // Uses imperative code for performance.
+// Uses `string.charCodeAt()` over `String.codePointAt()` because it is faster.
 /* eslint-disable complexity, max-statements, fp/no-let, fp/no-loops, max-depth,
    fp/no-mutation, no-magic-numbers, unicorn/prefer-code-point */
 export const getCodePointByteLength = function (string) {

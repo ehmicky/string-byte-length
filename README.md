@@ -93,8 +93,7 @@ than other methods on big strings.
 ## String.codePointAt()
 
 [`String.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)
-is like [`String.charCodeAt()`](#stringcharcodeat) but slightly
-[slower](#benchmarks).
+is like [`String.charCodeAt()`](#stringcharcodeat) but [slower](#benchmarks).
 
 ## encodeURI()
 

@@ -31,9 +31,9 @@ titles:
   encodePatternTwo: encodeURI().split().length
   # TODO: add titles of inputs variations
   # simple: Only ASCII
-  # low: Mostly ASCII, very few Unicode
-  # medium: Mostly ASCII, some Unicode
-  # complex: Only Unicode
+  # low: Mostly ASCII, very few non-ASCII
+  # medium: Mostly ASCII, some non-ASCII
+  # complex: Only non-ASCII
   # 0c: 0 characters
   # 1c: 1 characters
   # 1e1c: 10 characters

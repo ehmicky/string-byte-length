@@ -9,4 +9,4 @@ const getTextEncoderByteLength = function (textEncoder, string) {
 }
 
 // `TextEncoder()` is faster once the string is large enough
-export const TEXT_ENCODER_MIN_LENGTH = 1e2
+export const TEXT_ENCODER_MIN_LENGTH = 3e2

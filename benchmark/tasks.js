@@ -1,5 +1,7 @@
 import { Buffer, Blob } from 'buffer'
 
+import { getNodeByteLength } from '../src/buffer.js'
+import { createTextEncoderFunc } from '../src/encoder.js'
 import { getStringByteLength } from '../src/string.js'
 
 import { getString } from './string.js'
@@ -22,7 +24,15 @@ export const stringByteLength = {
 export const bufferByteLength = {
   beforeAll,
   main() {
-    Buffer.byteLength(string)
+    getNodeByteLength(string)
+  },
+}
+
+const textEncode = createTextEncoderFunc()
+export const textEncoder = {
+  beforeAll,
+  main() {
+    textEncode(string)
   },
 }
 
@@ -37,14 +47,6 @@ export const blob = {
   beforeAll,
   main() {
     new Blob([string]).size
-  },
-}
-
-const encoder = new TextEncoder()
-export const textEncoder = {
-  beforeAll,
-  main() {
-    encoder.encode(string).length
   },
 }
 

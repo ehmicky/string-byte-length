@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import { TEXT_ENCODER_MIN_LENGTH } from '../../src/encoder.js'
+import { TEXT_ENCODER_MIN_LENGTH, CACHE_MAX_MEMORY } from '../../src/encoder.js'
 
 // All characters being tested
 const CHARACTERS = [
@@ -34,12 +34,21 @@ const CHARACTERS = [
 
 // Try each character with prepended|appended characters
 const LONG_SPACE = '_'.repeat(TEXT_ENCODER_MIN_LENGTH)
+const VERY_LONG_SPACE = '_'.repeat(Math.ceil(CACHE_MAX_MEMORY / 3))
 const STRINGS = CHARACTERS.flatMap(({ string, size }) => [
   { string, size },
   { string: `${string} `, size: size + 1 },
   { string: ` ${string}`, size: size + 1 },
-  { string: `${string}${LONG_SPACE}`, size: size + TEXT_ENCODER_MIN_LENGTH },
-  { string: `${LONG_SPACE}${string}`, size: size + TEXT_ENCODER_MIN_LENGTH },
+  { string: `${string}${LONG_SPACE}`, size: size + LONG_SPACE.length },
+  { string: `${LONG_SPACE}${string}`, size: size + LONG_SPACE.length },
+  {
+    string: `${string}${VERY_LONG_SPACE}`,
+    size: size + VERY_LONG_SPACE.length,
+  },
+  {
+    string: `${VERY_LONG_SPACE}${string}`,
+    size: size + VERY_LONG_SPACE.length,
+  },
 ])
 
 // Also test empty strings

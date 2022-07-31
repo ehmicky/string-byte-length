@@ -5,7 +5,8 @@ export const createTextEncoderFunc = function () {
 
 // Compute the byte length using `TextEncoder`
 const getTextEncoderByteLength = function (textEncoder, string) {
-  return textEncoder.encode(string).length
+  const encoderBuffer = new Uint8Array(string.length * 3)
+  return textEncoder.encodeInto(string, encoderBuffer).written
 }
 
 // `TextEncoder()` is faster once the string is large enough

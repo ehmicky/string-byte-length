@@ -41,7 +41,7 @@ This library uses a mix of multiple algorithms:
 - In Node.js: [`Buffer.byteLength()`](#bufferbytelength)
 - Otherwise:
   - On big strings: [`TextEncoder`](#textencoder)
-  - On small strings: [`String.codePointAt()`](#stringcodepointat)
+  - On small strings: [`String.charCodeAt()`](#stringcharcodeat)
 
 ## String.length
 

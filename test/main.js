@@ -1,6 +1,6 @@
 import test from 'ava'
-import templateName from 'template-name'
+import stringByteLength from 'string-byte-length'
 
 test('Dummy test', (t) => {
-  t.true(templateName(true))
+  t.true(stringByteLength(true))
 })

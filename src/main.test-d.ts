@@ -1,8 +1,8 @@
 import { expectType, expectAssignable } from 'tsd'
 
-import templateName, { Options } from './main.js'
+import stringByteLength, { Options } from './main.js'
 
-expectType<object>(templateName(true))
+expectType<object>(stringByteLength(true))
 
-templateName(true, {})
+stringByteLength(true, {})
 expectAssignable<Options>({})

@@ -146,6 +146,11 @@ Only non-ASCII     Buffer.byteLength()     15.39ns     22.9ns    53.5ns    373ns
                    encodeURI()             35.91ns    256.0ns  1451.3ns  14172ns 132.73μs 1619.8μs   18343μs  177.13ms 1670.0ms      n/a
 ```
 
+# Related projects
+
+- [`string-byte-slice`](https://github.com/ehmicky/string-byte-slice): Like
+  `string.slice()` but bytewise.
+
 # Support
 
 For any question, _don't hesitate_ to [submit an issue on GitHub](../../issues).

@@ -150,6 +150,8 @@ Only non-ASCII     Buffer.byteLength()     15.39ns     22.9ns    53.5ns    373ns
 
 - [`string-byte-slice`](https://github.com/ehmicky/string-byte-slice): Like
   `string.slice()` but bytewise.
+- [`truncate-json`](https://github.com/ehmicky/truncate-json): Truncate a JSON
+  string.
 
 # Support
 

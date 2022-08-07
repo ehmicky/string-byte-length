@@ -1,4 +1,4 @@
-// Test using `string.codePointAt()`
+// Test using `string.charCode()`
 
 // Simulate platforms where neither `Buffer` nor `TextEncoder` is available
 // eslint-disable-next-line fp/no-delete, n/prefer-global/buffer, import/unambiguous

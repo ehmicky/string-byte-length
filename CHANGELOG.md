@@ -1,3 +1,9 @@
+# 1.4.1
+
+## Bug fixes
+
+- Fix `package.json`
+
 # 1.4.0
 
 - Switch to MIT license

@@ -1,4 +1,4 @@
-import { Buffer, Blob } from 'buffer'
+import { Buffer, Blob } from 'node:buffer'
 
 import { getNodeByteLength } from '../src/buffer.js'
 import { getCharCodeByteLength } from '../src/char_code.js'

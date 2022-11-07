@@ -1,6 +1,6 @@
 import { expectType, expectNotType, expectError } from 'tsd'
 
-import stringByteLength from './main.js'
+import stringByteLength from 'string-byte-length'
 
 expectType<0>(stringByteLength(''))
 expectNotType<0>(stringByteLength('a'))

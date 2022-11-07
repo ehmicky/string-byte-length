@@ -1,3 +1,9 @@
+# 1.5.0
+
+## Features
+
+- Add browser support
+
 # 1.4.1
 
 ## Bug fixes

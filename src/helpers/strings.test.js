@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-restricted-imports
-import { TEXT_ENCODER_MIN_LENGTH, CACHE_MAX_MEMORY } from '../../src/encoder.js'
+import { TEXT_ENCODER_MIN_LENGTH, CACHE_MAX_MEMORY } from '../encoder.js'
 
 // All characters being tested
 const CHARACTERS = [

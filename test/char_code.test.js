@@ -6,4 +6,4 @@ delete globalThis.Buffer.byteLength
 // eslint-disable-next-line fp/no-delete
 delete globalThis.TextEncoder
 
-await import('./helpers/main.js')
+await import('./helpers/main.test.js')

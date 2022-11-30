@@ -4,4 +4,4 @@
 // eslint-disable-next-line fp/no-delete, n/prefer-global/buffer, import/unambiguous
 delete globalThis.Buffer.byteLength
 
-await import('./helpers/main.js')
+await import('./helpers/main.test.js')

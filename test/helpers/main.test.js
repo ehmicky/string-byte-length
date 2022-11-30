@@ -3,7 +3,7 @@ import test from 'ava'
 import stringByteLength from 'string-byte-length'
 import { each } from 'test-each'
 
-import { ALL_STRINGS } from './strings.js'
+import { ALL_STRINGS } from './strings.test.js'
 
 each(ALL_STRINGS, ({ title }, { string, size }) => {
   test(`Should compute the byte length | ${title}`, (t) => {

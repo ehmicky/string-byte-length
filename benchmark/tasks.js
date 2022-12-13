@@ -6,7 +6,7 @@ import { createTextEncoderFunc } from '../src/encoder.js'
 
 import { getString } from './string.js'
 
-const beforeAll = function ({ character, size }) {
+const beforeAll = ({ character, size }) => {
   // eslint-disable-next-line fp/no-mutation
   string = getString(character, size)
 }
@@ -16,7 +16,7 @@ let string = ''
 
 export const charCodeAt = {
   beforeAll,
-  main() {
+  main: () => {
     getCharCodeByteLength(string)
   },
 }
@@ -26,7 +26,7 @@ export const codePointAt = {
   // Uses imperative code for performance.
   /* eslint-disable complexity, max-statements, fp/no-let, fp/no-loops,
      max-depth, fp/no-mutation */
-  main() {
+  main: () => {
     const charLength = string.length
     let byteLength = 0
 
@@ -53,7 +53,7 @@ export const codePointAt = {
 
 export const bufferByteLength = {
   beforeAll,
-  main() {
+  main: () => {
     getNodeByteLength(string)
   },
 }
@@ -61,28 +61,28 @@ export const bufferByteLength = {
 const textEncode = createTextEncoderFunc()
 export const textEncoder = {
   beforeAll,
-  main() {
+  main: () => {
     textEncode(string)
   },
 }
 
 export const bufferFrom = {
   beforeAll,
-  main() {
+  main: () => {
     Buffer.from(string).length
   },
 }
 
 export const blob = {
   beforeAll,
-  main() {
+  main: () => {
     new Blob([string]).size
   },
 }
 
 export const encodePatternOne = {
   beforeAll,
-  main() {
+  main: () => {
     const matches = encodeURIComponent(string).match(ENCODE_REGEXP_ONE)
     string.length + (matches ? matches.length : 0)
   },
@@ -92,7 +92,7 @@ const ENCODE_REGEXP_ONE = /%[89ABab]/gu
 
 export const encodePatternTwo = {
   beforeAll,
-  main() {
+  main: () => {
     encodeURI(string).split(ENCODE_REGEXP_TWO).length - 1
   },
 }

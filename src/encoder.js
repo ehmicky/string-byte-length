@@ -1,16 +1,15 @@
 // Initialize the function
-export const createTextEncoderFunc = function () {
-  return getTextEncoderByteLength.bind(undefined, new TextEncoder())
-}
+export const createTextEncoderFunc = () =>
+  getTextEncoderByteLength.bind(undefined, new TextEncoder())
 
 // Compute the byte length using `TextEncoder`
-const getTextEncoderByteLength = function (textEncoder, string) {
+const getTextEncoderByteLength = (textEncoder, string) => {
   const encoderBuffer = getBuffer(string)
   return textEncoder.encodeInto(string, encoderBuffer).written
 }
 
 // The buffer is cached for performance reason
-const getBuffer = function (string) {
+const getBuffer = (string) => {
   const size = string.length * 3
 
   if (size > CACHE_MAX_MEMORY) {

@@ -1,5 +1,5 @@
 // Retrieve string used as input for benchmarks
-export const getString = function (character, size) {
+export const getString = (character, size) => {
   if (character === 'complex') {
     return COMPLEX_CHARACTER.repeat(size)
   }
@@ -12,7 +12,7 @@ export const getString = function (character, size) {
   return `${firstChar}${SIMPLE_CHARACTER.repeat(size)}`
 }
 
-const getMediumString = function (size) {
+const getMediumString = (size) => {
   if (size === 1) {
     return SIMPLE_CHARACTER
   }

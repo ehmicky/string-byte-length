@@ -53,7 +53,7 @@
   "devDependencies": {
     "@ehmicky/dev-tasks": "^2.0.80",
     "spyd": "^0.6.1",
-    "test-each": "^5.7.1"
+    "test-each": "^6.0.0"
   },
   "engines": {
     "node": ">=16.17.0"

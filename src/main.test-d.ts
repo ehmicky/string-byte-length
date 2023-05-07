@@ -1,6 +1,6 @@
+import stringByteLength from 'string-byte-length'
 import { expectType, expectNotType } from 'tsd'
 
-import stringByteLength from 'string-byte-length'
 
 expectType<0>(stringByteLength(''))
 expectNotType<0>(stringByteLength('a'))

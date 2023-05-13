@@ -32,7 +32,7 @@ stringByteLength('🦄') // 4
 npm install string-byte-length
 ```
 
-This package works in both Node.js >=14.18.0 and
+This package works in both Node.js >=16.17.0 and
 [browsers](https://raw.githubusercontent.com/ehmicky/dev-tasks/main/src/browserslist).
 
 This is an ES module. It must be loaded using

@@ -42,7 +42,10 @@
   ],
   "license": "MIT",
   "homepage": "https://www.github.com/ehmicky/string-byte-length",
-  "repository": "ehmicky/string-byte-length",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehmicky/string-byte-length.git"
+  },
   "bugs": {
     "url": "https://github.com/ehmicky/string-byte-length/issues"
   },

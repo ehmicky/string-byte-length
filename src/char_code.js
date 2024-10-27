@@ -1,6 +1,6 @@
 // Uses imperative code for performance.
 // Uses `string.charCodeAt()` over `String.codePointAt()` because it is faster.
-/* eslint-disable complexity, max-statements, fp/no-let, fp/no-loops, max-depth,
+/* eslint-disable max-statements, fp/no-let, fp/no-loops, max-depth,
    fp/no-mutation, no-continue, unicorn/prefer-code-point */
 export const getCharCodeByteLength = (string) => {
   const charLength = string.length
@@ -57,5 +57,5 @@ const FIRST_HIGH_SURROGATE = 0xd8_00
 const LAST_HIGH_SURROGATE = 0xdb_ff
 const FIRST_LOW_SURROGATE = 0xdc_00
 const LAST_LOW_SURROGATE = 0xdf_ff
-/* eslint-enable complexity, max-statements, fp/no-let, fp/no-loops, max-depth,
+/* eslint-enable max-statements, fp/no-let, fp/no-loops, max-depth,
    fp/no-mutation, no-continue, unicorn/prefer-code-point */

@@ -25,7 +25,7 @@ export const charCodeAt = {
 export const codePointAt = {
   beforeAll,
   // Uses imperative code for performance.
-  /* eslint-disable complexity, max-statements, fp/no-let, fp/no-loops,
+  /* eslint-disable max-statements, fp/no-let, fp/no-loops,
      max-depth, fp/no-mutation */
   main: () => {
     const charLength = string.length
@@ -48,7 +48,7 @@ export const codePointAt = {
 
     return byteLength
   },
-  /* eslint-enable complexity, max-statements, fp/no-let, fp/no-loops,
+  /* eslint-enable max-statements, fp/no-let, fp/no-loops,
      max-depth, fp/no-mutation */
 }
 

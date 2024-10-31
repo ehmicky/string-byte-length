@@ -1,4 +1,4 @@
-import { TEXT_ENCODER_MIN_LENGTH, CACHE_MAX_MEMORY } from '../encoder.js'
+import { CACHE_MAX_MEMORY, TEXT_ENCODER_MIN_LENGTH } from '../encoder.js'
 
 // All characters being tested
 const CHARACTERS = [

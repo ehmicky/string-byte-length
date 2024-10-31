@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-shadow
-import { Buffer, Blob } from 'node:buffer'
+import { Blob, Buffer } from 'node:buffer'
 
 import { getNodeByteLength } from '../src/buffer.js'
 import { getCharCodeByteLength } from '../src/char_code.js'

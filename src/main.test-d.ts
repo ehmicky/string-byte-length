@@ -1,4 +1,4 @@
-import { expectType, expectNotType } from 'tsd'
+import { expectNotType, expectType } from 'tsd'
 
 import stringByteLength from 'string-byte-length'
 
